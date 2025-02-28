@@ -1,0 +1,7 @@
+_format_version: "3.0"
+routes:
+  - name: cat1-route
+    service:
+      name: cat1-service
+    paths:
+      - "/hello-cat1"

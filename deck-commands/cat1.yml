@@ -1,0 +1,19 @@
+_format_version: "3.0"
+services:
+  - host: 10.61.181.151
+    name: cat1-service
+    port: 8080
+    path: /api/v3/pet/1
+    protocol: http
+    routes:
+      - name: cat1-route
+        paths:
+          - /hello-cat1
+        protocols:
+          - http
+          - https
+        methods:
+          - GET
+
+# Use IP Address instead of localhost else you get a "Connection refused" error
+# Use "Ethernet adapter Ethernet 4" IP
