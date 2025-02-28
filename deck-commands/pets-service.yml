@@ -1,0 +1,79 @@
+#_format_version: "3.0"
+#services:
+#  - name: pets-service
+#    url: http://10.61.181.151:8080/api/v3/pet/
+#    routes:
+#      - name: pets-route
+#        paths:
+#          - /pets
+#        protocols:
+#          - http
+#          - https
+#        methods:
+#          - GET
+#
+#plugins:
+#  - name: pre-function
+#    config:
+#      access:
+#        - |
+#          return function()
+#          local route_id = ngx.ctx.route.id
+#          if not route_id then
+#          return
+#          end
+#
+#          -- Percent-encode the route ID
+#          local route_id_encoded = ngx.escape_uri(route_id)
+#
+#          -- Construct the new upstream URL
+#          local upstream_url = string.format("http://10.61.181.151:8080/api/v3/pet/%s", route_id_encoded)
+#
+#          -- Set the new upstream URL
+#          ngx.var.upstream_uri = upstream_url
+#          end
+#
+#  - name: request-transformer
+#    route: pets-route
+
+
+_format_version: "3.0"
+services:
+  - name: pets-service
+    url: http://10.61.181.151:8080/api/v3
+    routes:
+      - name: findById
+        paths:
+          - /pet
+        protocols:
+          - http
+        methods:
+          - GET
+        strip_path: false
+
+      - name: findByStatus
+        paths:
+          - /pet/findByStatus
+        protocols:
+          - http
+        methods:
+          - GET
+        strip_path: false
+
+      - name: findByTags
+        paths:
+          - /pet/findByTags
+        protocols:
+          - http
+        methods:
+          - GET
+        strip_path: false
+
+#---------------------
+# Endpoints
+#---------------------
+# http://localhost:8000/pet/1
+# http://localhost:8000/pet/findByStatus?status=sold
+# http://localhost:8000/pet/findByTags?tags=tag4
+
+# !!IMPORTANT!!: set strip_path to false

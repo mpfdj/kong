@@ -51,3 +51,27 @@ deck gateway apply cat1-route.yml
 deck gateway sync cat1.yml
 
 curl http://localhost:8000/hello-cat1
+
+
+
+# Use url instead of protocol, host, port, and path individually
+When defining a service, the administrator provides a name and the upstream application connection information. 
+The connection details can be provided in the url field as a single string, or by providing individual values for protocol, host, port, and path individually.
+
+
+
+
+# Kong Service Resource URI Validation Error
+https://github.com/Kong/kong/issues/6125
+Include ${route.id} in upstream URL you can use template variables in the service's url field
+
+Indeed "$" is part of reserved as part of sub-delims, but the path rule includes segment and segment-nz, which include pchar, which includes sub-delims explicitly.
+
+Long story short, all characters from the sub-delims list above need to be added as valid to our path validator!
+
+
+
+https://pskim.medium.com/url-rewriting-in-kong-b887d65ca072
+
+https://docs.konghq.com/hub/kong-inc/request-transformer
+https://docs.konghq.com/hub/kong-inc/request-transformer-advanced/
