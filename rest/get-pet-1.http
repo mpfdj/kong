@@ -1,0 +1,3 @@
+### Get pet 1
+GET http://localhost:8000/pet/1
+kong-debug: 1

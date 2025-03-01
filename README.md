@@ -83,3 +83,11 @@ https://docs.konghq.com/hub/kong-inc/request-transformer-advanced/
 
 
 
+
+# Intellij Exploring the HTTP request syntax
+https://www.jetbrains.com/help/idea/exploring-http-syntax.html
+
+
+
+# Kong Gateway debug requests
+https://docs.konghq.com/gateway/latest/production/debug-request/

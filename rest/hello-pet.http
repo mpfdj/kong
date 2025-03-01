@@ -1,0 +1,3 @@
+### Hello pet
+GET http://localhost:8000/helloPet
+kong-debug: 1

@@ -1,0 +1,3 @@
+### Find pet by tags
+GET http://localhost:8000/pet/findByTags?tags=tag4
+kong-debug: 1
