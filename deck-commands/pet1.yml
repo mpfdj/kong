@@ -1,17 +1,16 @@
 _format_version: "3.0"
 services:
   - host: 10.61.181.151
-    name: cat1-service
+    name: pet1-service
     port: 8080
     path: /api/v3/pet/1
     protocol: http
     routes:
-      - name: cat1-route
+      - name: pet1-route
         paths:
-          - /hello-cat1
+          - /hello-pet1
         protocols:
           - http
-          - https
         methods:
           - GET
 

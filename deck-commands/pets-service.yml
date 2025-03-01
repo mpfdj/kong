@@ -8,7 +8,6 @@
 #          - /pets
 #        protocols:
 #          - http
-#          - https
 #        methods:
 #          - GET
 #
@@ -69,11 +68,23 @@ services:
           - GET
         strip_path: false
 
+  - name: hello-pet-service
+    url: http://10.61.181.151:8080/api/v3/pet/1
+    routes:
+      - name: hello-pet-route
+        paths:
+          - /helloPet
+        protocols:
+          - http
+        methods:
+          - GET
+
 #---------------------
 # Endpoints
 #---------------------
 # http://localhost:8000/pet/1
 # http://localhost:8000/pet/findByStatus?status=sold
 # http://localhost:8000/pet/findByTags?tags=tag4
+# http://localhost:8000/helloPet
 
 # !!IMPORTANT!!: set strip_path to false
