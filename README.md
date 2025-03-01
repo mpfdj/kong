@@ -40,7 +40,12 @@ https://docs.konghq.com/deck/get-started/
 
 # For upstream services use IP Address instead of localhost
 Else you get a "Connection refused" error in the kong-gateway Docker container Logs
-Use "Ethernet adapter Ethernet 4" IP
+Use "Ethernet adapter Ethernet 4" IP Address or "Wireless LAN adapter Wi-Fi"
+
+# Set environment variable
+https://docs.konghq.com/deck/gateway/sensitive-data/
+set DECK_PET_STORE_HOST=192.168.68.119
+
 
 
 
@@ -75,3 +80,6 @@ https://pskim.medium.com/url-rewriting-in-kong-b887d65ca072
 
 https://docs.konghq.com/hub/kong-inc/request-transformer
 https://docs.konghq.com/hub/kong-inc/request-transformer-advanced/
+
+
+

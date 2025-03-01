@@ -1,6 +1,6 @@
 _format_version: "3.0"
 services:
-  - host: 10.61.181.151
+  - host: ${{ env "DECK_PET_STORE_HOST" }}
     name: pet1-service
     port: 8080
     path: /api/v3/pet/1

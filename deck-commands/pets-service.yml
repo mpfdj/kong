@@ -1,18 +1,20 @@
 #_format_version: "3.0"
 #services:
 #  - name: pets-service
-#    url: http://10.61.181.151:8080/api/v3/pet/
+#    url: http://10.61.183.129:8080/api/v3/
 #    routes:
 #      - name: pets-route
 #        paths:
-#          - /pets
+#          - /pet
 #        protocols:
 #          - http
 #        methods:
 #          - GET
+#        strip_path: false
 #
 #plugins:
 #  - name: pre-function
+#    service: pets-service
 #    config:
 #      access:
 #        - |
@@ -25,21 +27,30 @@
 #          -- Percent-encode the route ID
 #          local route_id_encoded = ngx.escape_uri(route_id)
 #
+#          print(string.format("DEBUG URI: %s", ngx.var.request_uri))
+#          print(string.format("DEBUG ROUTE_ID: %s", route_id_encoded))
+#
+#          -- https://github.com/Kong/kong/issues/2834
 #          -- Construct the new upstream URL
-#          local upstream_url = string.format("http://10.61.181.151:8080/api/v3/pet/%s", route_id_encoded)
+#          local upstream_url = string.format("http://10.61.183.129:8080/api/v3/pet/%s", route_id_encoded:sub(1, 1))
+#          -- local upstream_url = string.format("/%s", "1")
 #
 #          -- Set the new upstream URL
-#          ngx.var.upstream_uri = upstream_url
-#          end
+#          print(string.format("DEBUG UPSTREAM_URL: %s", upstream_url))
 #
-#  - name: request-transformer
-#    route: pets-route
+#          ngx.ctx.balancer_address.host = "10.61.183.129"
+#          ngx.ctx.balancer_address.port = "8080"
+#          ngx.var.upstream_uri = "/api/v3/pet/1"
+#
+#          --ngx.var.upstream_uri = upstream_url
+#          --ngx.ctx.api.upstream_url = upstream_url
+#          end
 
 
 _format_version: "3.0"
 services:
   - name: pets-service
-    url: http://10.61.181.151:8080/api/v3
+    url: http://${{ env "DECK_PET_STORE_HOST" }}:8080/api/v3
     routes:
       - name: findById
         paths:
@@ -69,7 +80,7 @@ services:
         strip_path: false
 
   - name: hello-pet-service
-    url: http://10.61.181.151:8080/api/v3/pet/1
+    url: http://${{ env "DECK_PET_STORE_HOST" }}:8080/api/v3/pet/1
     routes:
       - name: hello-pet-route
         paths:
